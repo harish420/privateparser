@@ -13,6 +13,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-linkify": "1.0.0-alpha",
+    "react-router-dom": "^6.22.3",
     "styled-components": "5.3.6",
     "vite": "4.1.2",
     "whatsapp-chat-parser": "4.0.0"

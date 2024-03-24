@@ -1,18 +1,31 @@
-import { useEffect } from 'react';
+import { useEffect, useState} from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
 
 import { showError } from './utils/utils';
 import { rawFileAtom, messagesAtom } from './stores/global';
-import Dropzone from './components/Dropzone/Dropzone';
 import MessageViewer from './components/MessageViewer/MessageViewer';
 import Sidebar from './components/Sidebar/Sidebar';
+import Welcome from './components/Welcome/Welcome';
 import * as S from './style';
 
-import exampleChat from './assets/whatsapp-chat-parser-example.zip';
 
 function App() {
   const messages = useAtomValue(messagesAtom);
   const setRawFile = useSetAtom(rawFileAtom);
+
+  const [showWelcome, setShowWelcome] = useState(true); // State to control rendering of Welcome component
+
+  const handleWelcomeComplete = async () => {
+    setShowWelcome(false); // Once Welcome is complete, set showWelcome to false
+    try{
+      const exampleChat = await fetch('/src/assets/chat.zip');
+      const zipBolb = await exampleChat.blob();
+      const zipFile = new File([zipBolb], 'chat.zip', { type: 'application/zip' });
+      processFile(zipFile);
+    }catch(error){
+      console.log("error while fetching the file.")
+    }
+  };
 
   const processFile = (file: File) => {
     if (!file) return;
@@ -24,7 +37,6 @@ function App() {
         setRawFile(e.target.result);
       }
     });
-
     if (/^application\/(?:x-)?zip(?:-compressed)?$/.test(file.type)) {
       reader.readAsArrayBuffer(file);
     } else if (file.type === 'text/plain') {
@@ -49,18 +61,20 @@ function App() {
 
   return (
     <>
-      <S.GlobalStyles />
-      <S.Container>
-        <S.Header>
-          <Dropzone onFileUpload={processFile} id="dropzone" />
-          <span>OR</span>
-          <a href={exampleChat} download>
-            Download example chat
-          </a>
-        </S.Header>
-        <MessageViewer />
-        {messages.length > 0 && <Sidebar />}
-      </S.Container>
+      {showWelcome ? (
+        <Welcome onComplete={handleWelcomeComplete} />
+      ) : (
+        <>
+          <S.GlobalStyles />
+          <S.Container>
+            <S.Header>
+              <h1>Welcome bae! </h1>
+            </S.Header>
+            <MessageViewer />
+            {messages.length > 0 && <Sidebar />}
+          </S.Container>
+        </>
+      )}
     </>
   );
 }
