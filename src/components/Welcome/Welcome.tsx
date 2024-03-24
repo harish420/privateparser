@@ -67,7 +67,7 @@ class Welcome extends Component<WelcomeProps, WelcomeState> {
       <div className="login-container">
         {showFirstGif && (
           <div className="top-gif">
-            <img src="./assets/cute-love-bear-roses.gif" alt="First GIF" />
+            <img src="assets/cute-love-bear-roses.gif" alt="First GIF" />
             <h1>Are you Ankitha?</h1>
             <div className="button-container">
               <button className="yes-button" onClick={this.confirmIdentity}>
@@ -81,7 +81,7 @@ class Welcome extends Component<WelcomeProps, WelcomeState> {
         )}
         {showFirstGifpart2 && (
           <div className="top-gif">
-            <img src="./assets/hmm-suspect.gif" alt="First GIF" />
+            <img src="assets/hmm-suspect.gif" alt="First GIF" />
             <h1>Are you My Ankitha?</h1>
             <div className="button-container">
               <button className="yes-button" onClick={this.confirmIdentityPart2}>
@@ -95,7 +95,7 @@ class Welcome extends Component<WelcomeProps, WelcomeState> {
         )}
         {showSecondGif && (
           <div className="second-gif">
-            <img src="./assets/favorite-person-i-see-you.gif" alt="Second GIF" />
+            <img src="assets/favorite-person-i-see-you.gif" alt="Second GIF" />
             <h2>Then Enter the Password.</h2>
             <input
               type="password"
@@ -112,7 +112,7 @@ class Welcome extends Component<WelcomeProps, WelcomeState> {
         )}
         {liar && (
           <div className="liar">
-            <img src="./assets/tkthao219-bunny.gif" alt="Liar GIF" />
+            <img src="assets/tkthao219-bunny.gif" alt="Liar GIF" />
             <h2>You are a Liar!</h2>
             <div className="button-container">
               <button className="bye-button" onClick={this.liarFun}>
@@ -123,7 +123,7 @@ class Welcome extends Component<WelcomeProps, WelcomeState> {
         )}
         {noIdentity && (
           <div className="noIdentity">
-            <img src="./assets/cute-dog.gif" alt="No Identity GIF" />
+            <img src="assets/cute-dog.gif" alt="No Identity GIF" />
             <h2>This is not for you then</h2>
             <div className="button-container">
               <button className="bye-button" onClick={this.liarFun}>

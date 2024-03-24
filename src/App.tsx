@@ -18,7 +18,7 @@ function App() {
   const handleWelcomeComplete = async () => {
     setShowWelcome(false); // Once Welcome is complete, set showWelcome to false
     try{
-      const exampleChat = await fetch('/assets/chat.zip');
+      const exampleChat = await fetch('assets/chat.zip');
       const zipBolb = await exampleChat.blob();
       const zipFile = new File([zipBolb], 'chat.zip', { type: 'application/zip' });
       processFile(zipFile);
